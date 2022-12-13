@@ -1,0 +1,81 @@
+
+
+<style type="text/css">
+	
+div#tData_paginate {
+  margin-bottom: -30px;
+  margin-top: 5px;
+}
+
+div#tData_filter {
+  margin-bottom: -14px;
+  margin-top: -3px;
+}
+.box-form {
+  background-color: white;
+  margin-bottom: -10px;
+}
+
+td, th {
+  padding: 2px;
+}
+
+input#jumlah {
+  margin-top: -75px;
+  margin-left: 10px;
+  text-align: right;
+  display: none;
+}
+
+input#jumlah2 {
+  margin-top: -28px;
+  margin-left: -10px;
+  text-align: right;
+  display: none;
+}
+
+
+button.btn.btn-primary.btn-block.btRinci {
+  margin-top: -5px;
+}
+
+</style>
+
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="#"><label>Anggaran</label></a></li>
+			<li><a href="#"><label id="judul1"> </label></a></li> 
+		</ol>
+	</div>
+</div>
+
+
+<div id="forminput">
+	
+</div>
+
+<script src="js/rkactk.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<script type="text/javascript">
+
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+	$('#judul1').html(modul);
+//	$('#judul2').html(modul);
+	tableMaster(modul);
+}
+
+$(document).ready(function() {
+	var modul=document.getElementById('modul').value;
+
+	LoadDataTablesScripts(AllTables(modul));	
+	$('.form-control').tooltip();
+	WinMove(); 
+
+
+});
+</script>
+

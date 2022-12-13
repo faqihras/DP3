@@ -1,0 +1,186 @@
+
+
+<style type="text/css">
+
+div#tabelData_paginate {
+  margin-bottom: -30px;
+  margin-top: -26px;
+}
+
+div#tabelData_filter {
+  margin-bottom: -14px;
+  margin-top: -3px;
+}
+.box-form {
+  background-color: white;
+  margin-bottom: -10px;
+}
+
+th { font-size: 12px; }
+td { font-size: 12px; }
+
+tr.trhide.odd {
+    display: none;
+}
+
+div#divtahun {
+    margin-left: 14px;
+}
+
+div#labelThn {
+    /*margin-top: 16px;*/
+}
+</style>
+
+<div class="row">
+    <div id="breadcrumb" class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="#"><label>Laporan Rekap Semesteran</label></a></li>
+            <!-- <li><a href="#"><label id="judul1"> </label></a></li> -->
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div  class="col-md-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <div class="col-md-12">
+                    
+                    <div  class="col-md-3">
+                        <label class="form-control-label">SEMESTER</label>
+                    </div>
+                    <div  class="col-md-5">
+                        <input type="hidden" class="populate placeholder" name="semester" id="semester" >
+                        <input type="hidden" name="semester_hidden" id="semester_hidden" >
+                    </div>
+                </div>
+                <div class="col-md-12"><p> </p> </div>
+                <div class="col-md-12">
+                    <div  class="col-md-3">
+                        <label class="form-control-label">UNIT</label>
+                    </div>
+                    <div  class="col-md-5">
+                        <input type="hidden" class="populate placeholder" name="pegawai" id="pegawai" >
+                        <input type="hidden" name="pegawai_hidden" id="pegawai_hidden" >
+                    </div>
+                </div>
+                <div class="col-md-12"><p> </p> </div>
+                <div class="row" id="tahun" style="margin-left:5px;margin-right:5px;margin-top: 15px;">
+                    <div  class="col-md-3" id="btload">
+                    &nbsp;
+                    </div>
+                    <div  class="col-md-3" id="btload" style="padding-left:22px;padding-right:22px;">
+                        <!-- <button type="button" class="btn btn-primary btn-app-sm" onclick="loadLaporan()"><i class="fa fa-refresh" aria-hidden="true" style="font-size:30px"></i></button> -->
+                        <button type="button" class="btn btn-primary btn-app-sm" onclick="loadPerfaktual()"><i class="fa fa-print" aria-hidden="true" style="font-size:30px"></i></button>
+                        <!-- <button id="btnCetakExcel" type="button" disabled class="btn btn-primary btn-app-sm" onclick="tableToExcel('tData', 'laporan', 'Laporan_Fifo_Perfaktual.xls')"><i class="fa fa-file-excel-o" aria-hidden="true" style="font-size:30px"></i></button> -->
+                        <input type="hidden" name="linkpdf" id="linkpdf">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="box">
+            <div class="box-content" style="overflow-x: scroll;margin-right:12px">
+                <div  id="tData" name="tData" > </div>
+                <p> &nbsp; </p>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<input type="hidden" name="skpd" id="skpd" >
+<input type="hidden" name="nmskpd" id="nmskpd" >
+
+<a id="dlink" style="display:none;"></a>
+
+
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<script src="js/laprekapsemester.js"></script>
+<script type="text/javascript">
+
+function refreshlap(){
+    $("#tData").html('');
+    loadLaporan();
+}
+
+$(document).ready(function() {
+    var modul=document.getElementById('modul').value;
+    cekSession();
+    LoadDataTablesScripts(AllTables(modul));
+    $('#tgahir').datepicker();
+    $('#tgawal').datepicker();
+    // var thn = document.getElementById('txtang').value;
+    // document.getElementById('tgawal').value = '01/01/'+thn;
+
+    $('#pegawai')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;
+              var nmhidden=this.id+'_hidden';
+              //console.log(nmhidden);
+              $('#'+nmhidden).attr('value',txt);
+        })
+        .select2({
+        placeholder: "Pilih Data",
+        ajax: {
+                url: 'backend/public/api/admin/master/unitforcombo',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        // jenis:'mutasi',
+                        page_limit: 10 // page size
+                    };
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+    });
+
+    $('#semester')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;
+              var nmhidden=this.id+'_hidden';
+              //console.log(nmhidden);
+              $('#'+nmhidden).attr('value',txt);
+        })
+        .select2({
+        placeholder: "Pilih Data",
+        ajax: {
+                url: 'backend/public/api/admin/master/semester',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        // jenis:'mutasi',
+                        page_limit: 10 // page size
+                    };
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+    });
+
+    $('.form-control').tooltip();
+    WinMove();
+
+});
+</script>

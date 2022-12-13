@@ -1,0 +1,296 @@
+<style type="text/css">
+
+    div#tData_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    div#tDataList_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tDataList_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+
+    .box-form {
+        background-color: white;
+        margin-bottom: -10px;
+    }
+    .form-group,
+    .box-content .form-group,
+    .devoops-modal-inner .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    input.form-control {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3 {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .table > tbody > tr > td {
+        padding: 4px;
+    }
+    .table > thead > tr > th {
+        padding: 4px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3,
+    .col-md-1 {
+        padding: 0px;
+    }
+    .form-group {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    div#s2id_namaBarang {
+        top: -2px;
+    }
+
+
+.modal-body {
+    padding: 2px;
+}
+button#btmodal {
+    margin-right: 30px;
+}
+.modal-header {
+    padding: 10px;
+}
+
+</style>
+
+<div class="row">
+    <div id="breadcrumb" class="col-md-12">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <label>INPUT PROTA/PROMES</label>
+                </a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+    <div class="box" style="margin-bottom:0px;">
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">NOMOR PROTA</label>
+                        <input type="text" class="form-control" name="nopemeriksaan" id="nopemeriksaan" placeholder="" onkeyup="ceknopemeriksaan(this.value)" />
+                        <input type="hidden" id="idskpd" />
+                    </div>
+                </div>
+               <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">TANGGAL PROTA</label>&nbsp;&nbsp;<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Format Tanggal Pada Sistem adalah Bulan/Tanggal/Tahun"></i>
+                        <input type="text" class="form-control" name="tglterima" id="tglterima" placeholder="" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">SEMESTER </label>
+                        <select class="form-control" name="ppn" id="ppn" >
+                            <option value="1" selected="true">SEMESTER I (GANJIL)</option>
+                            <option value="1" selected="true">SEMESTER II (GENAP)</option>
+                            <!-- <option value="2">PPn EXCLUDE</option> -->
+                            <!-- <option value="3">TANPA PPn</option> -->
+                        </select>
+                    </div>
+                </div>
+              <!--   <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">NOMOR DPA/SPM/KWITANSI</label>
+                        <input type="text" class="form-control" name="nokwitansi" id="nokwitansi" placeholder="" onkeyup="ceknokwitansi(this.value)" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">NOMOR BERITA ACARA PENERIMAAN</label>
+                        <input type="text" class="form-control" name="nopenerimaangudang" id="nopenerimaangudang" placeholder="" onkeyup="ceknopenerimaangudang(this.value)" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">NOMOR NOTA</label>
+                        <input type="text" class="form-control" name="nota" id="nota" placeholder="" onkeyup="ceknonota(this.value)" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">JENIS PENERIMAAN</label>
+                        <input type="text" class="form-control" name="jenis" id="jenis" placeholder=" (Pembelian, Hibah atau Lainnya)" />
+                    </div>
+                </div> -->
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                   <div class="form-group">
+                            <label class="control-label">PEGAWAI</label>
+                            <input type="hidden" name="lkIdPeg" id="lkIdPeg" class="populate placeholder" />
+                            <input type="hidden" name="lkIdPeg_hidden" id="lkIdPeg_hidden" /> 
+                        </div>
+                </div>
+               
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">UNIT</label>
+                         <input type="hidden" name="unit" id="unit" class="populate placeholder" />
+                            <input type="hidden" name="unit_hidden" id="unit_hidden" /> 
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">KELAS</label>
+                        <!--  <input type="hidden" name="unit" id="unit" class="populate placeholder" />
+                            <input type="hidden" name="unit_hidden" id="unit_hidden" />  -->
+                            <select class="form-control" name="kelas" id="kelas" >
+                            <option value="1" selected="true">Kelas I</option>
+                            <option value="2" selected="true">Kelas II</option>
+                            <option value="3" selected="true">Kelas III</option>
+                            <!-- <option value="2">PPn EXCLUDE</option> -->
+                            <!-- <option value="3">TANPA PPn</option> -->
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+    <div class="box" style="margin-bottom:0px;">
+
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+
+            <div class="row form-group" style="padding-top: 0px;padding-bottom:0px;margin-top: 0px;margin-bottom:0px;">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">KOMPETENSI DASAR</label>
+                        <input type="text" class="form-control" name="kodeBarang" id="kodeBarang" />
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label class="control-label">NAMA KEGIATAN</label>
+                        <input type="text" class="form-control" name="namaBarang" id="namaBarang" />
+                       <!--  <input type="hidden" class="populate placeholder" name="namaBarang" id="namaBarang">
+                        <input type="hidden" name="namaBarang_hidden" id="namaBarang_hidden"> -->
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">JAM PELAJARAN</label>
+                        <input type="text" class="form-control" name="qty" id="qty" style="text-align: right;" />
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label class="control-label">KETERANGAN</label>
+                        <input type="text" class="form-control" name="keterangan" id="keterangan" />
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-success btn-sm btn-block" onclick="addList()">TAMBAH</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData">
+            </table>
+            <input type="hidden" id="idxdet">
+            <div class="box-content" style="padding-top: 5px;padding-bottom:5px;">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-primary btn-block" id="cfull" data-toggle="modal" data-target="#myModal">LIST DATA PROTA</button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+                 <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+                  <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+
+                   <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">TOTAL JAM PELAJARAN</label>
+                        <input type="text" class="form-control" name="totaltrans" id="totaltrans" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-primary btn-block" onclick="simpan()">SIMPAN DATA PROTA</button>
+                        <input type="hidden" id='isProcessing' value="0">
+                    </div>
+                </div>
+                <p> &nbsp; </p>
+            </div>
+        </div>
+    </div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:80%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">LIST DATA PROTA</h4>
+      </div>
+
+      <div class="modal-body">
+			<div class="box-content no-padding table-responsive">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tDataList">
+ 				</table>
+			</div>
+			<div style="text-align:right">
+			<button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal" id="btmodal" ><i class="fa fa-power-off"></i></button>
+			</div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <script src="plugins/select2/select2.min.js"></script>
+    <script src="plugins/numeral/numeral.js"></script>
+    <script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="js/penerimaanbarang.js"></script>

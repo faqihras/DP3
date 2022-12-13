@@ -1,0 +1,460 @@
+<style>
+.btn-ab {
+  background-color:#006838; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 14px 18px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.my-fancy-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006838;
+   color: white;
+}
+
+.my-text {
+  display: block;
+  font-family: "arial";
+}
+
+.my-icon {
+    vertical-align: middle;
+    font-size: 40px;
+}
+
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid white;
+    margin: 0 auto;
+
+}
+.preview{
+   width:500px;
+   height: 500px;
+   margin:0px auto;
+}
+/*.canvas.drawing.canvas.drawingBuffer {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }*/
+
+</style>
+<!--Start Breadcrumb-->
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">Dashboard</a></li>
+		</ol>
+	</div>
+</div>
+<!--End Breadcrumb-->
+<!-- <div class="row">
+	<div class="col-sm-3">
+		<div class="box">
+			<div class="box-content">
+			<div class="small-box">
+        <div class="inner">
+            <h3>0</h3>
+            <p>Jumlah Alpha</p>
+        </div>
+            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="box">
+				<div class="box-content">
+				<div class="small-box">
+	        <div class="inner">
+	            <h3>0</h3>
+	            <p>Jumlah Sakit</p>
+	        </div>
+	            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+	        </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="box">
+					<div class="box-content">
+					<div class="small-box">
+		        <div class="inner">
+		            <h3>1</h3>
+		            <p>Jumlah Cuti</p>
+		        </div>
+		            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+		        </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="box">
+						<div class="box-content">
+						<div class="small-box">
+			        <div class="inner">
+			            <h3>4</h3>
+			            <p>Jumlah Perjalanan Dinas</p>
+			        </div>
+			            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+			        </div>
+							</div>
+						</div>
+					</div>
+	</div> -->
+
+<div class="row">
+	
+<div class="col-xs-12">
+		<div class="box ui-draggable ui-droppable">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-th-list"></i>
+					<span>ABSEN PEGAWAI</span>
+				</div>
+				<div class="box-icons pull-right">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+
+			<!-- div class="box">
+					<form action="backend/public/api/admin/absensi/absenmobile" method="POST" >
+					<div id="sourceSelectPanel" style="display:none">
+                        <label for="sourceSelect">Change video source:</label>
+                        <select id="sourceSelect" style="max-width:400px"></select>
+                    </div>
+                    <div>
+                        <video id="video" width="100%" height="100%" style="border: 1px solid gray"></video>
+                    </div>
+                    <input type="hidden" id="result" class="form-control" name="result" placeholder="result">
+                    <textarea hidden="" name="id_karyawan" id="result" onchange="hitTotal()" readonly></textarea>
+                    <input type="hidden"  class="form-control" name="id_karyawan" placeholder="id_karyawan" id="result">
+                    <div class="col-md-2">
+                    	
+                    <div class="form-group" type="hidden">
+                        <label class="control-label">&nbsp;</label>
+                       <button type="button" class="btn btn-success btn-sm btn-block" onclick="simpan()">TAMBAH</button>
+                        <input type="hidden" id='isProcessing' value="0">
+                    </div>
+                </div>
+                </form>
+			</div> -->
+
+			<div class="box-content no-padding table-responsive">
+				<center>
+					<canvas id="demo" width="300px" height="300px"></canvas>
+				</center>
+				<center>
+				<div class="my-fancy-container" id="masuk" data-toggle="modal" data-target="#exampleModal">
+				    <span class='fa fa-sign-in'></span>
+				    <span class="my-text">Absen Datang</span>
+				    <div class="arrow-down"></div>
+				</div>
+				<div class="my-fancy-container" data-toggle="modal" data-target="#exampleModal2" >
+				    <span class='fa fa-sign-out'></span>
+				    <span class="my-text">Absen Pulang</span>
+				    <div class="arrow-down"></div>
+				</div>
+				</center>
+                 </div>
+
+
+		</div>
+
+	</div>
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Absensi Masuk</h5>
+        <video id="preview" width="100%" height="100%"></video>
+              <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="radio" name="options" value="1" autocomplete="off" checked > Front Camera
+            <input type="hidden" id='content'>
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" value="2" autocomplete="off"> Back Camera
+          </label>
+        </div>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+     
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close()" >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="hidden" id='isProcessing' value="0">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- modal 2 -->
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Absensi Masuk</h5>
+        <video id="preview" width="100%" height="100%"></video>
+              <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="radio" name="options" value="1" autocomplete="off" checked > Front Camera
+            <input type="hidden" id='content'>
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" value="2" autocomplete="off"> Back Camera
+          </label>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+     
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="close()" >Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="hidden" id='isProcessing' value="0">
+      </div>
+    </div>
+  </div>
+</div>
+</div> -->
+
+
+<script src="js/absen.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<!-- <script src="plugins/Highcharts-4.1.7/js/highcharts.js"></script>
+<script src="plugins/Highcharts-4.1.7/js/highcharts-3d.js"></script>
+<script src="plugins/Highcharts-4.1.7/js/modules/exporting.js"></script> -->
+<script src="plugins/CanvasClock-master/canvas_clock.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+ <script src="plugins/quangga/dist/quagga.min.js"></script>
+<!-- <script src="plugins/zxing/zxing.min.js"></script> -->
+
+
+
+<script type="text/javascript">
+
+function DrawAllMorrisCharts(){
+	// rekapDashboard();
+	// highchartsPendapatan();
+	// highchartPie();
+	// MorrisChart1();
+	// MorrisChart2();
+	// MorrisChart4();
+}
+
+// $(document).ready(function() {
+// 	LoadMorrisScripts(DrawAllMorrisCharts);
+// 	WinMove();
+
+// });
+
+myClock_={
+  
+  "indicate": true,
+  "indicate_color": "#222",
+  "dial1_color": "#666600",
+  "dial2_color": "#81812e",
+  "dial3_color": "#9d9d5c",
+  "time_add": 1,
+  "time_24h": true,
+  "date_add":5,
+  "date_add_color": "#999",
+ };
+
+context = document.getElementById('demo').getContext('2d');
+clock_digitalran(300, context, myClock_);
+
+function DemoGallery(){
+	$('.fancybox').fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+}
+
+$(document).ready(function() {
+
+	// $('.fancybox').fancybox({
+	// 	openEffect	: 'none',
+	// 	closeEffect	: 'none'
+	// });
+
+ //    setGrid();
+	LoadFancyboxScript(DemoGallery);
+
+	LoadMorrisScripts(DrawAllMorrisCharts);
+
+	WinMove();
+
+	LoadDataTablesScripts();	
+	
+});
+
+
+
+ // window.addEventListener('load', function() {
+ //        let selectedDeviceId;
+ //        let audio = new Audio("assets/audio/beep.mp3");
+ //        const codeReader = new ZXing.BrowserQRCodeReader()
+ //        console.log('ZXing code reader initialized')
+ //        codeReader.getVideoInputDevices()
+ //            .then((videoInputDevices) => {
+ //                const sourceSelect = document.getElementById('sourceSelect')
+ //                selectedDeviceId = videoInputDevices[0].deviceId
+ //                if (videoInputDevices.length >= 1) {
+ //                    videoInputDevices.forEach((element) => {
+ //                        const sourceOption = document.createElement('option')
+ //                        sourceOption.text = element.label
+ //                        sourceOption.value = element.deviceId
+ //                        sourceSelect.appendChild(sourceOption)
+ //                    })
+ //                    sourceSelect.onchange = () => {
+ //                        selectedDeviceId = sourceSelect.value;
+ //                    };
+ //                    const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+ //                    sourceSelectPanel.style.display = 'block'
+ //                }
+ //                codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+ //                    console.log(result)
+ //                    document.getElementById('result').textContent = result.text
+ //                    if (result != null) {
+ //                        audio.play();
+ //                    }
+ //                    $('#button').submit();
+ //                }).catch((err) => {
+ //                    console.error(err)
+ //                    document.getElementById('result').textContent = err
+ //                })
+ //                console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+ //            })
+ //            .catch((err) => {
+ //                console.error(err)
+ //            })
+ //    })
+
+
+</script>
+<script src="plugins/quangga/dist/quagga.min.js"></script>
+<script src="plugins/zxing/instascan.min.js"></script>
+
+<script type="text/javascript">
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+    scanner.addListener('scan',function(content){
+        var content = document.getElementById("content").value=content;
+         document.getElementById('content').value= content;
+            var postData             = new Object();
+            var date = new Date();
+            var current_time = date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+
+            postData['content']            = content;
+            postData['current_time']            = current_time;
+
+                if (confirm("Sudahkah anda benar ada di lokasi ?")) {
+                    //confirm("isinya nota= "+nota);
+                    //confirm(postData['nota']);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "backend/public/api/admin/absensi/absenmobile",
+                        data: postData,
+                        dataType: "json",
+                        success: function (data) {
+                             alert("Terimakasih Telah Absen Masuk Hari ini");
+
+                            document.getElementById('isProcessing').value = 0;
+
+
+                            // document.getElementById('masuk').onclick = function () {
+                            //     alert('Maaf anda sudah absen masuk hari ini');
+                            //     this.onclick = false;
+                            // }
+
+
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                            document.getElementById('isProcessing').value = 0;
+                            alert(textStatus + " : " + errorThrown + " -> GAGAL DISIMPAN !!!");
+                        }
+                    });
+                }else{
+                                    document.getElementById('isProcessing').value = 0;
+                    }
+                
+                // alert(content);
+                 scanner.stop();
+                 $('#exampleModal').modal('hide');
+
+        // ;
+    });
+    Instascan.Camera.getCameras().then(function (cameras){
+        if(cameras.length>0){
+            // scanner.start(cameras[0]);
+            $('[name="options"]').on('change',function(){
+                if($(this).val()==1){
+                    if(cameras[0]!=""){
+                        scanner.start(cameras[0]);
+                    }else{
+                        alert('No Front camera found!');
+                    }
+                }else if($(this).val()==2){
+                    if(cameras[1]!=""){
+                        scanner.start(cameras[1]);
+                    }else{
+                        alert('No Back camera found!');
+                    }
+                }
+            });
+        }else{
+            console.error('No cameras found.');
+            alert('No cameras found.');
+        }
+    }).catch(function(e){
+        console.error(e);
+        alert(e);
+
+    });
+
+    // function  close () {
+    //        var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+    //     scanner.addListener('scan',function(content){
+    //     var content = document.getElementById("content").value=content;
+       
+    //     alert(content);
+    //      scanner.stop();
+    //     //window.location.href=content;
+    // });
+    // }
+</script>

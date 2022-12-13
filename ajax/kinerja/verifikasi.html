@@ -1,0 +1,211 @@
+<style type="text/css">
+    
+    div#tabelData_paginate {
+      margin-bottom: -30px;
+      margin-top: -26px;
+    }
+    
+    div#tabelData_filter {
+      margin-bottom: -14px;
+      margin-top: -3px;
+    }
+    .box-form {
+      background-color: white;
+      margin-bottom: -10px;
+    }
+    
+    th { font-size: 12px; }
+    td { font-size: 12px; }
+    
+    tr.trhide.odd {
+        display: none;
+    }
+    
+    div#divtahun {
+        margin-left: 14px;
+    }
+    
+    div#labelThn {
+        /*margin-top: 16px;*/
+    }
+    </style>
+
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="#"><label>Laporan</label></a></li>
+			<li><a href="#"><label id="judul1"> </label></a></li>
+		</ol>
+	</div>
+</div>
+
+
+<div class="row">
+	<div  class="col-md-12">
+		<div class="box">
+    		<div class="box-header">
+    			<div class="box-icons">
+    				<a class="collapse-link">
+    					<i class="fa fa-chevron-up"></i>
+    				</a>
+    				<a class="expand-link">
+    					<i class="fa fa-expand"></i>
+    				</a>
+    			</div>
+    			<div class="no-move"></div>
+    		</div>
+            <div class="box-content">
+
+    			<div class="col-md-12">
+    				<div  class="col-md-2">
+    					<label>PERIODE</label>
+    				</div>
+    				<div  class="col-md-2" style="padding-left:15px;padding-right:15px">
+    					<input type="text" class="form-control" name="tgawal" id="tgawal" placeholder="Tanggal Awal" />
+    				</div>
+    				<div  class="col-md-1 text-center">
+    					<label>S/D</label>
+    				</div>
+    				<div  class="col-md-2" style="padding-left:15px;padding-right:15px">
+    					<input type="text" class="form-control" name="tgahir" id="tgahir" placeholder="Tanggal Akhir" />
+    				</div>
+    			</div>
+                <div class="col-md-12"><p> </p> </div>
+                <div class="col-md-12">
+                    <div  class="col-md-2">
+                        <label class="form-control-label">PEGAWAI</label>
+                    </div>
+                    <div  class="col-md-4">
+                        <input type="hidden" class="populate placeholder" name="pegawai" id="pegawai" >
+                        <input type="hidden" name="pegawai_hidden" id="pegawai_hidden" >
+                    </div>
+                </div>
+
+                <input type="hidden" name="lkIdPeg" id="lkIdPeg" /> 
+                <div class="col-md-12"><p> </p> </div>
+    			<div class="row">
+    				<div  class="col-md-2" id="btload">
+    				&nbsp;
+    				</div>
+    				<div  class="col-md-3" id="btload" style="padding-left:33px;padding-right:28px;padding-top:15px;">
+    		            <button type="button" class="btn btn-primary btn-app-sm" onclick="refreshlap()"><i class="fa fa-refresh" aria-hidden="true" style="font-size:30px"></i></button>
+    					<input type="hidden" name="linkpdf" id="linkpdf">
+    				</div>
+    	        </div>
+    	    </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <div  id="tData" name="tData" > </div>
+                <p> &nbsp; </p>
+            </div>
+        </div>
+	</div>
+</div>
+
+ <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="width:90%">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Verifikasi Kinerja</h4>
+          </div>
+
+          <input type="hidden" id="lkId">
+
+          <div class="modal-body">
+                <!-- <div class="container">
+                    <ul class="nav nav-pills">
+                        <li class="active" id="linkPribadi"><a>Data Pengaduan</a></li>
+                    </ul>
+                </div> -->
+                <div class="row" id="modal">
+                  
+                        <div class="box-form" id="isi_modal">
+                            <div id="forminput" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="formfilter"></div>
+                        </div>  
+                    </div>
+                    
+                </div>
+
+                
+
+                <p>
+              <!--   <table width="100%"> -->
+                    <tr>
+                        <td style="text-align:right"><button id="save" type="button" class="btn btn-success btn-app-sm" onclick="save()"><i class="fa fa-save"></i></button> <button id="close" type="button" class="btn btn-default btn-app-sm" data-dismiss="modal"><i class="fa fa-power-off"></i></button></td>
+                    </tr>
+               <!--  </table> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+<a id="dlink" style="display:none;"></a>
+
+
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<script src="js/verifikasi.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    cekSession();
+	var modul=document.getElementById('modul').value;
+
+	LoadDataTablesScripts(AllTables(modul));
+
+	var tgawal = $('#tgawal').datepicker({
+        "format": 'dd/mm/yyyy'
+    });
+
+	$('#tgahir').datepicker({
+        "format": 'dd/mm/yyyy',
+    });
+
+
+	$('.form-control').tooltip();
+	WinMove();
+
+});
+
+ $('#pegawai')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;
+              var nmhidden=this.id+'_hidden';
+              //console.log(nmhidden);
+              $('#'+nmhidden).attr('value',txt);
+        })
+        .select2({
+        placeholder: "Pilih Data",
+        ajax: {
+                url: 'backend/public/api/admin/master/pegawai2forcombo',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        // jenis:'mutasi',
+                        page_limit: 10 // page size
+                    };
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+    });
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+	$('#judul1').html(modul);
+	$('#judul2').html(modul);
+}
+
+function refreshlap(){
+    $("#tData").html('');
+    loadLaporan();
+}
+
+
+</script>

@@ -1,0 +1,825 @@
+
+
+<style type="text/css">
+    
+
+    div#tData_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    div#tDataList_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tDataList_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    
+    .box-form {
+        background-color: white;
+        margin-bottom: -10px;
+    }
+    .form-group,
+    .box-content .form-group,
+    .devoops-modal-inner .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    input.form-control {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3 {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .table > tbody > tr > td {
+        padding: 4px;
+    }
+    .table > thead > tr > th {
+        padding: 4px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3,
+    .col-md-1 {
+        padding: 0px;
+    }
+    .form-group {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    div#s2id_namaBarang {
+        top: -2px;
+    }
+
+
+.modal-body {
+    padding: 2px;
+}
+button#btmodal {
+    margin-right: 30px;
+}
+.modal-header {
+    padding: 10px;
+}
+
+</style>
+
+<div class="row">
+
+    <div id="breadcrumb" class="col-md-12">
+        <ol class="breadcrumb">
+
+        <div  class="col-md-1">
+            <div class="form-group" style="text-align: left">
+                 <label class="control-label" style="color:#ffffff">&nbsp;&nbsp;</label>
+            </div>
+        </div>        
+
+        <div  class="col-md-3">
+            <div class="form-group" id="csunit" style="margin-top:13px;display:none">
+            <input type="hidden" name="pilihunit" id="pilihunit" >
+            </div>
+            <div class="form-group" id="csnmunit" >
+            </div>
+        </div>            
+        </ol>
+
+    </div>
+</div>
+
+    <div  class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+        <div class="box" style="margin-bottom:0px;">
+            <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-user"></i>
+                <span><label>Input Daftar Penilaian Administrasi Keguruan</label></label></span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <!--<a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>-->
+            </div>
+            <div class="no-move"></div>
+        </div>
+    <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">     
+        <div class="row">
+            <div  class="col-md-4">
+                    <div class="form-group">
+                         <label class="control-label">UNIT</label>
+                         <input type="hidden" class="populate placeholder" name="nomorpermintaan" id="nomorpermintaan" >
+                         <input type="hidden" name="nomorpermintaan_hidden" id="nomorpermintaan_hidden" >
+
+                    </div>
+            </div> 
+            <div  class="col-md-2">
+                    <div class="form-group">
+                         <label class="control-label">TANGGAL PENILAIAN</label>
+                         <input type="text" class="form-control" name="tglretur" id="tglretur" placeholder="Pilih Tanggal" autocomplete="off"  />
+                         <!-- disabled="true" -->
+                    </div>
+            </div>       
+        </div>
+    </div>
+</div>
+</div>
+<div class="row" >
+    <div  class="col-md-12" >
+        <div class="box" >
+            <div class="box-content">
+
+
+            <div class="box-form" style="overflow-x: scroll;margin-right:12px"; >
+                <div class="box-content no-padding table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData2">
+                    </table>
+                    <input type="hidden" id="idxdet">
+                </div>
+            </div>  
+        
+            </div>
+        </div>
+    </div>      
+</div>
+<div id="myModal1" class="modal fade" role="dialog">
+     <div class="modal-dialog" style="width:90%">
+    <div class="modal-content">
+      <div class="modal-header">
+            <h4 class="modal-title">FORM PENILAIAN ADMINISTRASI KEGURUAN</h4>
+         
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <div class="row form-group" >
+                <input type="hidden" id="dpakId" name="dpakId" >
+                <input type="hidden" id="tanggal">
+
+                <input type="hidden" id="dpakJan1">
+                <input type="hidden" id="dpakJan2">
+                <input type="hidden" id="dpakJan3">
+                <input type="hidden" id="dpakJan4">
+                <input type="hidden" id="dpakJan5">
+                <input type="hidden" id='total' value="0">
+                <input type="hidden" id='total2' value="0">
+                <input type="hidden" id='total3' value="0">
+                <input type="hidden" id='total4' value="0">
+                <input type="hidden" id='total5' value="0">
+                <!-- <input type="hidden" id="tgltransaksi"> -->
+                    <!-- <div  class="col-md-2">
+                    <div class="form-group">
+                         <label class="control-label">Tanggal Penilaian</label>
+                         <input type="text" class="form-control" name="tglretur" id="tglretur" placeholder="Pilih Tanggal" autocomplete="off"  />
+                         disabled="true"
+                    </div>
+                    </div> 
+                       <div  class="col-md-2">
+                        <div class="form-group">
+                             <label class="control-label">Nama Pegawai</label>
+                             <input type="text" class="form-control" name="namaBarang" id="namaBarang"  autocomplete="off"  />
+                             <input type="hidden" name="kdunit" id="kdunit" >
+                             disabled="true"
+                        </div>
+                </div> -->
+                    <div class="col-md-12">
+                        <label class="control-label">1. Dokumen Prota & Promes</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="jadwalkbm" id="jadwalkbm" value="1" > Jadwal KBM
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="kalender" id="kalender"value="1"> Kalender Akademik
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="pekanefektif" id="pekanefektif" value="1"> Pekan Efektif
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="analisa" id="analisa" value="1"> Analisa KKM
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="distribusi" id="distribusi" value="1"> Distribusi Materi
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="analisis" id="analisis" value="1"> Analisis Materi
+                            </label1>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="control-label">2. Silabus</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="ki" id="ki" value="1"> Kompetensi Inti
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="kd" id="kd" value="1"> Kompetensi Dasar
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="mp" id="mp" value="1"> Mata Pelajaran
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="kp" id="kp" value="1"> Kegiatan Pembelajaran
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="indika" id="indika" value="1"> Indikator
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="nilai" id="nilai" value="1"> Penilaian
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="alokasi" id="alokasi" value="1"> Alokasi Waktu
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="sumber" id="sumber" value="1"> Sumber Belajar
+                            </label1>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="control-label">3. Rencana Pelaksanaan Pembelajaran</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="alokasiwaktu" id="alokasiwaktu" value="1"> Alokasi Waktu
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="komin" id="komin" value="1"> Kompetensi Inti
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="komdas" id="komdas" value="1"> Kompetensi Dasar
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox"  name="indikatorpembelajaran" id="indikatorpembelajaran"value="1"> Indikator Pembelajaran
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="tujuanpel" id="tujuanpel" value="1"> Tujuan Pembelajaran
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="mapel" id="mapel" value="1"> Mata Pelajaran
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="metode" id="metode" value="1"> Metode Pembelajaran
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="kegiatan" id="kegiatan" value="1"> Kegiatan Pembelajaran
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="sumberbelajar" id="sumberbelajar" value="1"> Sumber Belajar
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="bahanbelajar" id="bahanbelajar" value="1"> Bahan Belajar
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="alatbelajar" id="alatbelajar" value="1"> Alat Belajar
+                            </label1>
+                        </div>
+                         <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="penilaian" id="penilaian" value="1"> Penilaian
+                            </label1>
+                        </div>   
+                    </div>
+                    <div class="col-md-12">
+                        <label class="control-label">4. Pelaksanaan Tatap Muka KBM</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="materipembelajaran" id="materipembelajaran" value="1"> Materi Pembelajaran
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="presensi" id="presensi" value="1"> Presensi Siswa
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="catatan" id="catatan" value="1"> Catatan Afeksi Siswa
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="bentukkbm" id="bentukkbm" value="1"> Bentuk KBM
+                            </label1>
+                        </div>
+                    </div>
+
+                     <div class="col-md-12">
+                        <label class="control-label">5. Hasil Evaluasi Belajar</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="butirsoal" id="butirsoal" value="1"> Butir Soal
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                              <input class="checkbox-inline" type="checkbox" name="pelaksanaanpenilaian" id="pelaksanaanpenilaian" value="1"> Pelaksanaan Penilaian
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="hasilpenilaian" id="hasilpenilaian" value="1"> Hasil Penilaian
+                            </label1>
+                        </div>
+                        <div class="col-md-2">
+                            <label1>
+                                <input class="checkbox-inline" type="checkbox" name="atl" id="atl" value="1"> Anasilis Tindak Lanjut
+                            </label1>
+                        </div>
+                    </div>
+
+
+
+
+               <!--  <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Kalender Akademik</label>
+                         <input type="checkbox" class="form-control" name="kalender" id="kalender" />
+                        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Pekan Efectif</label>
+                        
+                    </div>
+                    <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Analisa KKM</label>
+                       <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                    </div>
+                </div>
+                <div class="col-md-2" >
+                    <div class="form-group">
+                        <label class="control-label" style="text-center">Distribusi Materi</label>
+                         
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding-right: 16px;">
+                    <div class="form-group">
+                        <label class="control-label">Analisis Materi</label>
+                         <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                        <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                        <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                        <input type="checkbox" class="form-control" name="satuan" id="satuan" />
+                    </div>
+                </div> -->
+            </div>
+              <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="simpan" onclick="simpan()">Save changes</button>
+        <input type="hidden" id='isProcessing' value="0">
+      </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:80%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">LIST DATA KOREKSI</h4>
+      </div>
+
+      <div class="modal-body">
+            <div class="box-content no-padding table-responsive">
+                <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tDataList">
+                </table>    
+            </div>
+            <div style="text-align:right">
+            <button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal" id="btmodal" ><i class="fa fa-power-off"></i></button>      
+            </div>
+
+      </div>
+    </div>
+
+  </div>
+</div> -->
+
+
+<div id="Modaltambahbarang" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:80%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">TAMBAH BARANG</h4>
+      </div>
+
+      <div class="modal-body">
+            <div class="row form-group" style="padding-top: 0px;padding-bottom:0px; margin-top: 0px;margin-bottom:0px;">
+                <input type="hidden" id="nomortransaksi">
+                <input type="hidden" id="tgltransaksi">
+                <div class="col-md-2" style="padding-left: 16px;">
+                    <div class="form-group">
+                        <label class="control-label">KODE </label>
+                        <input type="text" class="form-control" name="kodeBarang" id="kodeBarang" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">NAMA BARANG</label>
+                        <!-- <input type="text" class="form-control" name="namaBarang" id="namaBarang" /> -->
+                        <input type="hidden" class="populate placeholder" name="namaBarang" id="namaBarang">
+                        <input type="hidden" name="namaBarang_hidden" id="namaBarang_hidden">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">SATUAN</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">HARGA</label>
+                        <input type="text" class="form-control" name="hrgbeli" id="hrgbeli" style="text-align: right;" />
+                    </div>
+                </div>
+                <div class="col-md-1" style="padding-right: 16px;">
+                    <div class="form-group">
+                        <label class="control-label">QTY</label>
+                        <input type="text" class="form-control" name="qty" id="qty" style="text-align: right;" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">KETERANGAN BARANG</label>
+                        <input type="text" class="form-control" name="keterangan" id="keterangan" />
+                    </div>
+                </div>
+            </div>
+      </div>
+
+      <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-app-sm" data-dismiss="modal" id="btmodal" onclick="simpanbarang()" style="margin-left: 0px; margin-right: 0px;"><i class="fa fa-save"></i></button>
+            <input type="hidden" id='isProcessing2' value="0">
+            <button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal" id="btmodal" style="margin-left: 0px; margin-right: 0px;"><i class="fa fa-power-off"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/numeral/numeral.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<script src="js/dpak.js"></script>
+<script>
+        $(document).ready(function(){
+            $('#klik').click(function() {
+                
+                var jumlah=0;
+                var jumlah2=0;
+                var jumlah3=0;
+                var jumlah4=0;
+                var jumlah5=0;
+                var harga;
+                var harga2;
+                var harga3;
+                var harga4;
+                var harga5;
+
+                var total;
+                var total2;
+                var total3;
+                var total4;
+                var total5;
+
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+
+                tgl = mm + '/' + dd + '/' + yyyy;
+
+                tanggal = document.getElementById("tglretur").value;
+
+                var dpakId = document.getElementById("dpakId").value;;
+
+                if(document.getElementById("jadwalkbm").checked)
+                {
+                harga=document.getElementById("jadwalkbm").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                if(document.getElementById("pekanefektif").checked)
+                {
+                harga=document.getElementById("pekanefektif").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                if(document.getElementById("kalender").checked)
+                {
+                harga=document.getElementById("kalender").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                if(document.getElementById("analisa").checked)
+                {
+                harga=document.getElementById("analisa").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                if(document.getElementById("distribusi").checked)
+                {
+                harga=document.getElementById("distribusi").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                if(document.getElementById("analisis").checked)
+                {
+                harga=document.getElementById("analisis").value;
+                jumlah=jumlah+parseInt(harga);
+                }
+                document.getElementById("total").value=jumlah;
+                totala = document.getElementById("total").value;
+                total = (totala*100)/6;
+                // postData['total']=total;
+
+
+                // Categori2
+                if(document.getElementById("ki").checked)
+                {
+                harga=document.getElementById("ki").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("kd").checked)
+                {
+                harga=document.getElementById("kd").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("mp").checked)
+                {
+                harga=document.getElementById("mp").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("kp").checked)
+                {
+                harga=document.getElementById("kp").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("indika").checked)
+                {
+                harga=document.getElementById("indika").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("nilai").checked)
+                {
+                harga=document.getElementById("nilai").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("alokasi").checked)
+                {
+                harga=document.getElementById("alokasi").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                if(document.getElementById("sumber").checked)
+                {
+                harga=document.getElementById("sumber").value;
+                jumlah2=jumlah2+parseInt(harga);
+                }
+                document.getElementById("total2").value=jumlah2;
+                totalb = document.getElementById("total2").value;
+                total2 = (totalb*100)/8;
+                // postData['total2']=total2;
+
+                // categori3
+                if(document.getElementById("alokasiwaktu").checked)
+                {
+                harga=document.getElementById("alokasiwaktu").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("komin").checked)
+                {
+                harga=document.getElementById("komin").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("komdas").checked)
+                {
+                harga=document.getElementById("komdas").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("indikatorpembelajaran").checked)
+                {
+                harga=document.getElementById("indikatorpembelajaran").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("tujuanpel").checked)
+                {
+                harga=document.getElementById("tujuanpel").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("mapel").checked)
+                {
+                harga=document.getElementById("mapel").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("metode").checked)
+                {
+                harga=document.getElementById("metode").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("kegiatan").checked)
+                {
+                harga=document.getElementById("kegiatan").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("sumberbelajar").checked)
+                {
+                harga=document.getElementById("sumberbelajar").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("bahanbelajar").checked)
+                {
+                harga=document.getElementById("bahanbelajar").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("alatbelajar").checked)
+                {
+                harga=document.getElementById("alatbelajar").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                if(document.getElementById("penilaian").checked)
+                {
+                harga=document.getElementById("penilaian").value;
+                jumlah3=jumlah3+parseInt(harga);
+                }
+                 document.getElementById("total3").value=jumlah3;
+                totalc = document.getElementById("total3").value;
+                total3 = (totalc*100)/12;
+                // postData['total3']=total3;
+
+                //categori4
+                if(document.getElementById("materipembelajaran").checked)
+                {
+                harga=document.getElementById("materipembelajaran").value;
+                jumlah4=jumlah4+parseInt(harga);
+                }
+                if(document.getElementById("presensi").checked)
+                {
+                harga=document.getElementById("presensi").value;
+                jumlah4=jumlah4+parseInt(harga);
+                }
+                if(document.getElementById("catatan").checked)
+                {
+                harga=document.getElementById("catatan").value;
+                jumlah4=jumlah4+parseInt(harga);
+                }
+                if(document.getElementById("bentukkbm").checked)
+                {
+                harga=document.getElementById("bentukkbm").value;
+                jumlah4=jumlah4+parseInt(harga);
+                }
+                document.getElementById("total4").value=jumlah4;
+                totalf = document.getElementById("total4").value;
+                total4 = (totalf*100)/4;
+                // postData['total4']=total4;
+
+                //categori5
+                if(document.getElementById("butirsoal").checked)
+                {
+                harga=document.getElementById("butirsoal").value;
+                jumlah5=jumlah5+parseInt(harga);
+                }
+                if(document.getElementById("pelaksanaanpenilaian").checked)
+                {
+                harga=document.getElementById("pelaksanaanpenilaian").value;
+                jumlah5=jumlah5+parseInt(harga);
+                }
+                if(document.getElementById("hasilpenilaian").checked)
+                {
+                harga=document.getElementById("hasilpenilaian").value;
+                jumlah5=jumlah5+parseInt(harga);
+                }
+                if(document.getElementById("atl").checked)
+                {
+                harga=document.getElementById("atl").value;
+                jumlah5=jumlah5+parseInt(harga);
+                }
+                document.getElementById("total5").value=jumlah5;
+                totale = document.getElementById("total5").value;
+                total5 = (totale*100)/4;
+                // postData['total5']=total5;
+
+
+                dpakId = document.getElementById("dpakId").value;
+
+                // var profesi = [];
+                // $('.checkbox-inline').each(function(){
+                //     if($(this).is(":checked"))
+                //     {
+                //         profesi.push($(this).val());
+                //     }
+                // });
+                // profesi = profesi.toString();
+ 
+                $.ajax({
+                    url:"tambah.php",
+                    method:"POST",
+                    data:{total:total,total2:total2,total3:total3,total4:total4,total5:total5,dpakId:dpakId,tanggal:tanggal,dpakId:dpakId},
+                    success:function(data){
+                        $('#result').html(data);
+                        alert("Penilaian Telah Ditambahkan");
+                        clearForm();
+                        $('#myModal1').modal('hide');
+
+                    }
+                })
+            })
+        })
+
+
+
+        function clearForm() // THE CLEAR FORM FUNCTION
+        {
+          $('input[type="text"]').val('');
+          $('input[type="checkbox"]').prop('checked', false); // Uncheck
+          $('select').val('');
+          $('input[type="date"]').val('');
+          $(".fileinput-remove-button").click();
+        }
+        // function tugas2()
+        // {
+        // var jumlah=0;
+        // var harga;
+        // var total;
+
+
+       
+        // }
+
+
+    </script>

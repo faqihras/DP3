@@ -1,0 +1,364 @@
+<style>
+.btn-ab {
+  background-color:#006838; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 14px 18px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.my-fancy-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color:#006838;
+   color: white;
+}
+
+.my-text {
+  display: block;
+  font-family: "arial";
+}
+
+.my-icon {
+    vertical-align: middle;
+    font-size: 40px;
+}
+
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid white;
+    margin: 0 auto;
+
+}
+
+</style>
+<!--Start Breadcrumb-->
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">Dashboard</a></li>
+		</ol>
+	</div>
+</div>
+<!--End Breadcrumb-->
+<!-- <div class="row">
+	<div class="col-sm-3">
+		<div class="box">
+			<div class="box-content">
+			<div class="small-box">
+        <div class="inner">
+            <h3>0</h3>
+            <p>Jumlah Alpha</p>
+        </div>
+            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="box">
+				<div class="box-content">
+				<div class="small-box">
+	        <div class="inner">
+	            <h3>0</h3>
+	            <p>Jumlah Sakit</p>
+	        </div>
+	            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+	        </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="box">
+					<div class="box-content">
+					<div class="small-box">
+		        <div class="inner">
+		            <h3>1</h3>
+		            <p>Jumlah Cuti</p>
+		        </div>
+		            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+		        </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="box">
+						<div class="box-content">
+						<div class="small-box">
+			        <div class="inner">
+			            <h3>4</h3>
+			            <p>Jumlah Perjalanan Dinas</p>
+			        </div>
+			            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+			        </div>
+							</div>
+						</div>
+					</div>
+	</div> -->
+
+<div class="row">
+	
+<div class="col-xs-12">
+		<div class="box ui-draggable ui-droppable">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-th-list"></i>
+					<span>ABSEN PEGAWAI</span>
+				</div>
+				<div class="box-icons pull-right">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+
+			<!-- div class="box">
+					<form action="backend/public/api/admin/absensi/absenmobile" method="POST" >
+					<div id="sourceSelectPanel" style="display:none">
+                        <label for="sourceSelect">Change video source:</label>
+                        <select id="sourceSelect" style="max-width:400px"></select>
+                    </div>
+                    <div>
+                        <video id="video" width="100%" height="100%" style="border: 1px solid gray"></video>
+                    </div>
+                    <input type="hidden" id="result" class="form-control" name="result" placeholder="result">
+                    <textarea hidden="" name="id_karyawan" id="result" onchange="hitTotal()" readonly></textarea>
+                    <input type="hidden"  class="form-control" name="id_karyawan" placeholder="id_karyawan" id="result">
+                    <div class="col-md-2">
+                    	
+                    <div class="form-group" type="hidden">
+                        <label class="control-label">&nbsp;</label>
+                       <button type="button" class="btn btn-success btn-sm btn-block" onclick="simpan()">TAMBAH</button>
+                        <input type="hidden" id='isProcessing' value="0">
+                    </div>
+                </div>
+                </form>
+			</div> -->
+
+			<div class="box-content no-padding table-responsive">
+				<center>
+					<canvas id="demo" width="300px" height="300px"></canvas>
+				</center>
+				<center>
+				<div class="my-fancy-container" data-toggle="modal" data-target="#exampleModal">
+				    <span class='fa fa-sign-in'></span>
+				    <span class="my-text">Absen Datang</span>
+				    <div class="arrow-down"></div>
+				</div>
+				<div class="my-fancy-container">
+				    <span class='fa fa-sign-out'></span>
+				    <span class="my-text">Absen Pulang</span>
+				    <div class="arrow-down"></div>
+				</div>
+				</center>
+ 			</div>
+		</div>
+
+	</div>
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Absensi Pegawai</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="sourceSelectPanel" style="display:none">
+                        <label for="sourceSelect">Change video source:</label>
+                        <select id="sourceSelect" style="max-width:400px"></select>
+                    </div>
+                    <div>
+                        <video id="video" width="100%" height="100%" style="border: 1px solid gray"></video>
+                    </div>
+                     <textarea hidden="" name="id_karyawan" id="result" onchange="hitTotal()" readonly></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/dashboard.js"></script>
+
+
+<script src="plugins/Highcharts-4.1.7/js/highcharts.js"></script>
+<script src="plugins/Highcharts-4.1.7/js/highcharts-3d.js"></script>
+<script src="plugins/Highcharts-4.1.7/js/modules/exporting.js"></script>
+<script src="plugins/CanvasClock-master/canvas_clock.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<!-- <script src="plugins/zxing/zxing.min.js"></script> -->
+
+
+
+<script type="text/javascript">
+
+function DrawAllMorrisCharts(){
+	// rekapDashboard();
+	// highchartsPendapatan();
+	// highchartPie();
+	// MorrisChart1();
+	// MorrisChart2();
+	// MorrisChart4();
+}
+
+// $(document).ready(function() {
+// 	LoadMorrisScripts(DrawAllMorrisCharts);
+// 	WinMove();
+
+// });
+
+myClock_={
+  
+  "indicate": true,
+  "indicate_color": "#222",
+  "dial1_color": "#666600",
+  "dial2_color": "#81812e",
+  "dial3_color": "#9d9d5c",
+  "time_add": 1,
+  "time_24h": true,
+  "date_add":5,
+  "date_add_color": "#999",
+ };
+
+context = document.getElementById('demo').getContext('2d');
+clock_num(300, context, myClock_);
+
+function DemoGallery(){
+	$('.fancybox').fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+}
+
+$(document).ready(function() {
+
+	// $('.fancybox').fancybox({
+	// 	openEffect	: 'none',
+	// 	closeEffect	: 'none'
+	// });
+
+ //    setGrid();
+	LoadFancyboxScript(DemoGallery);
+
+	LoadMorrisScripts(DrawAllMorrisCharts);
+
+	WinMove();
+
+	LoadDataTablesScripts();	
+	
+});
+
+// window.addEventListener('load', function () {
+//     let selectedDeviceId;
+//     let audio = new Audio("assets/audio/beep.mp3");
+//     const codeReader = new ZXing.BrowserQRCodeReader()
+//     console.log('ZXing code reader initialized')
+//     codeReader.getVideoInputDevices()
+//     .then((videoInputDevices) => {
+//         const sourceSelect = document.getElementById('sourceSelect')
+//         selectedDeviceId = videoInputDevices[0].deviceId
+//         if (videoInputDevices.length >= 1) {
+//             videoInputDevices.forEach((element) => {
+//                 const sourceOption = document.createElement('option')
+//                 sourceOption.text = element.label
+//                 sourceOption.value = element.deviceId
+//                 sourceSelect.appendChild(sourceOption)
+//             })
+//             sourceSelect.onchange = () => {
+//                 selectedDeviceId = sourceSelect.value;
+//             };
+//             const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+//             sourceSelectPanel.style.display = 'block'
+//         }
+//         codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+//             console.log(result)
+//             document.getElementById('result').textContent = result.text
+//             if(result != null){
+//                 audio.play();
+//             }
+//             $('#button').submit();
+//         }).catch((err) => {
+//             console.error(err)
+//             document.getElementById('result').textContent = err
+//         })
+//         console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+//     })
+//     .catch((err) => {
+//         console.error(err)
+//     })
+// })
+
+</script>
+ <!-- <script type="text/javascript">
+        window.addEventListener('load', function () {
+            let selectedDeviceId;
+            const codeReader = new ZXing.BrowserMultiFormatReader();
+            console.log('ZXing code reader initialized');
+            codeReader.getVideoInputDevices()
+                .then((videoInputDevices) => {
+                    if (videoInputDevices.length < 1) {
+                        console.log('No video devices found');
+                        return;
+                    }
+
+                    selectedDeviceId = videoInputDevices[0].deviceId;
+
+                    codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
+                        if (result) {
+                            console.log(result);
+                            var barcode = result;
+                            //this.window.alert(barcode);
+                            if (String(barcode).charAt(0) == 'L') {
+                                document.getElementById('result').textContent = result.text;
+                                document.getElementById('result').style.color = "green";
+                                var previousurl = document.referrer;
+                                window.location.href = previousurl + "&BarCode=" + result.text;
+                            }
+                            else {
+
+                                document.getElementById('result').textContent = result.text;
+                                document.getElementById('result').style.color = "red";
+                                window.alert("Incorrect Barcode scan value.  Please try again.")
+                            }
+
+                        }
+                        if (err && !(err instanceof ZXing.NotFoundException)) {
+                            console.error(err);
+                            document.getElementById('result').textContent = err;
+                        }
+                    })
+                    console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
+                })
+                .catch((err) => {
+                    console.error(err)
+                }) })
+
+    </script> -->

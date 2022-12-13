@@ -1,0 +1,258 @@
+<style type="text/css">
+
+    div#tData_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    div#tDataList_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tDataList_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+
+    .box-form {
+        background-color: white;
+        margin-bottom: -10px;
+    }
+    .form-group,
+    .box-content .form-group,
+    .devoops-modal-inner .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    input.form-control {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3 {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .table > tbody > tr > td {
+        padding: 4px;
+    }
+    .table > thead > tr > th {
+        padding: 4px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3,
+    .col-md-1 {
+        padding: 0px;
+    }
+    .form-group {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    div#s2id_namaBarang {
+        top: -2px;
+    }
+
+
+.modal-body {
+    padding: 2px;
+}
+button#btmodal {
+    margin-right: 30px;
+}
+.modal-header {
+    padding: 10px;
+}
+
+</style>
+
+<div class="row">
+    <div id="breadcrumb" class="col-md-12">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <label>PENILAIAN BULANAN</label>
+                </a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+    <div class="box" style="margin-bottom:0px;">
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">NOMOR PENILAIAN</label>
+                        <input type="text" class="form-control" name="nopemeriksaan" id="nopemeriksaan" placeholder="" onkeyup="ceknopemeriksaan(this.value)" />
+                        <input type="hidden" id="idskpd" />
+                    </div>
+                </div>
+               <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">TANGGAL PENILAIAN</label>&nbsp;&nbsp;<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Format Tanggal Pada Sistem adalah Bulan/Tanggal/Tahun"></i>
+                        <input type="text" class="form-control" name="tglterima" id="tglterima" placeholder="" autocomplete="off" />
+                    </div>
+                </div>
+
+                 <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">UNIT</label>
+                        <input type="hidden" class="populate placeholder" name="suplier" id="suplier">
+                        <input type="hidden" name="suplier_hidden" id="suplier_hidden">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+               
+                
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+    <div class="box" style="margin-bottom:0px;">
+
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+
+            <div class="row form-group" style="padding-top: 0px;padding-bottom:0px;margin-top: 0px;margin-bottom:0px;">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">NIP</label>
+                        <input type="text" class="form-control" name="kodeBarang" id="kodeBarang" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">NAMA PEGAWAI</label>
+                        <!-- <input type="text" class="form-control" name="namaBarang" id="namaBarang" /> -->
+                        <input type="hidden" class="populate placeholder" name="lkIdPeg" id="lkIdPeg">
+                        <input type="hidden" name="lkIdPeg_hidden" id="lkIdPeg_hidden">
+                    </div>
+                </div>
+                <!-- <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">SATUAN</label>
+                        <input type="text" class="form-control" name="satuan" id="satuan" />
+                    </div>
+                </div> -->
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">DPK</label>
+                        <input type="text" class="form-control" name="hrgbeli" id="hrgbeli" style="text-align: right;"/>
+                        <!-- <input type="text" class="form-control" name="hrgbeli" id="hrgbeli" style="text-align: right;" onchange="cekHarga()" /> -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">DPP</label>
+                        <input type="text" class="form-control" name="qty" id="qty" style="text-align: right;" />
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label class="control-label">KETERANGAN</label>
+                        <input type="text" class="form-control" name="keterangan" id="keterangan" />
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-success btn-sm btn-block" onclick="addList()">TAMBAH</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-footer">
+            <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData">
+            </table>
+            <input type="hidden" id="idxdet">
+            <div class="box-content" style="padding-top: 5px;padding-bottom:5px;">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-primary btn-block" id="cfull" data-toggle="modal" data-target="#myModal">LIST PENILAIAN</button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+               <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+                 <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+                  <div class="col-md-2 col-md-2">
+                    <div class="form-group">
+                        <!-- <label class="control-label">DISKON FAKTUR</label> -->
+                        <input type="hidden" class="form-control" name="diskonfaktur" id="diskonfaktur" style="text-align: right;" readonly="true" value="0" />
+                    </div>
+                </div>
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="button" class="btn btn-primary btn-block" onclick="simpan()">SIMPAN PENILAIAN</button>
+                        <input type="hidden" id='isProcessing' value="0">
+                    </div>
+                </div>
+                 <div class="">
+                    <li>DPK = Daftar Penilaian Kehadiran.</li>
+                    <li>DPP = Daftar Peniliaan Pekerjaan.</li>
+                </div>
+                <p> &nbsp; </p>
+            </div>
+        </div>
+    </div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:80%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">LIST DATA PENILAIAN</h4>
+      </div>
+
+      <div class="modal-body">
+			<div class="box-content no-padding table-responsive">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tDataList">
+ 				</table>
+			</div>
+			<div style="text-align:right">
+			<button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal" id="btmodal" ><i class="fa fa-power-off"></i></button>
+			</div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <script src="plugins/select2/select2.min.js"></script>
+    <script src="plugins/numeral/numeral.js"></script>
+    <script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+    <script src="js/penilaianbulanan.js"></script>

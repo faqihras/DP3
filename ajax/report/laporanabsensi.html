@@ -1,0 +1,227 @@
+
+<style type="text/css">
+
+    .ui-datepicker{ z-index:10000 !important; }
+
+    div#tData3_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData3_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    div#tData3List_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData3List_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+
+
+
+    div#tData_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tData_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    div#tDataList_paginate {
+        margin-bottom: -30px;
+        margin-top: -26px;
+    }
+    div#tDataList_filter {
+        margin-bottom: -14px;
+        margin-top: -3px;
+    }
+
+    .box-form {
+        background-color: white;
+        margin-bottom: -10px;
+    }
+
+
+    .col-md-1,
+    .col-md-2,
+    .col-md-3 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    table#tData3,
+    .table > tbody > tr > td {
+        padding: 4px;
+    }
+    table#tData3,
+    .table > thead > tr > th {
+        padding: 4px;
+    }
+
+
+    table#tData,
+    .table > tbody > tr > td {
+        padding: 4px;
+    }
+    table#tData,
+    .table > thead > tr > th {
+        padding: 4px;
+    }
+    .col-md-1,
+    .col-md-2,
+    .col-md-3,
+    .col-md-4,
+    .col-md-8 {
+        padding: 2px;
+    }
+    .form-group {
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    .modal-body {
+    padding: 2px;
+    }
+
+    button#btmodal {
+    margin-right: 30px;
+    }
+
+    .modal-header {
+    padding: 10px;
+    }
+
+    input.form-control {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    td.kronis {
+        text-align: center;
+    }
+
+</style>
+
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="#"><label>Laporan</label></a></li>
+			<li><a href="#"><label id="judul1"> </label></a></li>
+		</ol>
+	</div>
+</div>
+
+
+<div class="row">
+	<div  class="col-md-12">
+		<div class="box">
+    		<div class="box-header">
+    			<div class="box-icons">
+    				<a class="collapse-link">
+    					<i class="fa fa-chevron-up"></i>
+    				</a>
+    				<a class="expand-link">
+    					<i class="fa fa-expand"></i>
+    				</a>
+    			</div>
+    			<div class="no-move"></div>
+    		</div>
+            <div class="box-content">
+
+    			<div class="col-md-12">
+    				<div  class="col-md-2">
+    					<label>PERIODE</label>
+    				</div>
+    				<div  class="col-md-2" style="padding-left:15px;padding-right:15px">
+    					<input type="text" class="form-control" name="tgawal" id="tgawal" placeholder="Tanggal Awal" />
+    				</div>
+    				<div  class="col-md-1 text-center">
+    					<label>S/D</label>
+    				</div>
+    				<div  class="col-md-2" style="padding-left:15px;padding-right:15px">
+    					<input type="text" class="form-control" name="tgahir" id="tgahir" placeholder="Tanggal Akhir" />
+    				</div>
+    			</div>
+
+                <div class="col-md-12">
+                    <div  class="col-md-2">
+                        <label>JENIS</label>
+                    </div>
+                    <div  class="col-md-5" style="padding-left:15px;padding-right:15px">
+                            <select class="form-control" name="jenis" id="jenis">
+                                <option value="">Semua</option>
+                                <option value="0">Absen Masuk</option>
+                                <option value="1">Absen Keluar</option>
+                            </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12"><p> </p> </div>
+    			<div class="row">
+    				<div  class="col-md-2" id="btload">
+    				&nbsp;
+    				</div>
+    				<div  class="col-md-3" id="btload" style="padding-left:33px;padding-right:28px;padding-top:15px;">
+    		            <button type="button" class="btn btn-primary btn-app-sm" onclick="refreshlap()"><i class="fa fa-refresh" aria-hidden="true" style="font-size:30px"></i></button>
+    					<input type="hidden" name="linkpdf" id="linkpdf">
+    				</div>
+    	        </div>
+    	    </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <div  id="tData" name="tData" > </div>
+                <p> &nbsp; </p>
+            </div>
+        </div>
+	</div>
+</div>
+
+<a id="dlink" style="display:none;"></a>
+
+
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+<script src="js/laporanabsensi.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    cekSession();
+	var modul=document.getElementById('modul').value;
+
+	LoadDataTablesScripts(AllTables(modul));
+
+	var tgawal = $('#tgawal').datepicker({
+        "format": 'dd/mm/yyyy'
+    });
+
+	$('#tgahir').datepicker({
+        "format": 'dd/mm/yyyy',
+    });
+
+
+	$('.form-control').tooltip();
+	WinMove();
+
+});
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+	$('#judul1').html(modul);
+	$('#judul2').html(modul);
+}
+
+function refreshlap(){
+    $("#tData").html('');
+    loadLaporan();
+}
+
+
+</script>

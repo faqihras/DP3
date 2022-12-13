@@ -1,0 +1,200 @@
+
+
+<style type="text/css">
+	
+div#tData_paginate {
+  margin-bottom: -30px;
+  margin-top: -26px;
+}
+
+div#tData_filter {
+  margin-bottom: -14px;
+  margin-top: -3px;
+}
+.box-form {
+  background-color: white;
+  margin-bottom: -10px;
+}
+</style>
+
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<!-- <li><a href="#"><label>Master</label></a></li> -->
+			<li><a href="#"><label id="judul1"> </label></a></li> 
+		</ol>
+	</div>
+</div>
+
+
+<div class="row">
+	<div  class="col-md-8">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span><label>LISTING DATA</label> 
+						<!-- <label id="judul2"> </label></span> -->
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+
+			<div class="box-content no-padding table-responsive">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData">
+ 				</table>	
+			</div>
+		</div>
+	</div>
+
+	<div  class="col-md-4">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span><label>INPUT / EDIT</label></label></span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-form">
+				
+				<div id="forminput" style="margin-bottom:10px;background-color:#FFFFFF"></div>				
+				<center>
+				<button type="button" class="btn btn-default btn-label-left" onclick="deleteData()"><span><i class="fa fa-times"></i></span>HAPUS</button>
+				<button type="button" class="btn btn-default"  onclick="newdata()"><span>BARU</span></button>
+				<button type="button" class="btn btn-default btn-label-right" onclick="save()">&nbsp;SIMPAN<span><i class="fa fa-save"></i></span> </button>
+				</center>
+			</div>	
+
+
+
+		</div>
+
+	</div>
+
+</div>
+
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal" style="display: none" id="modaldokter">modal 1</button>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:50%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">CARI DATA</h4>
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+			<!-- <div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 25px;">	
+				<div  class="col-md-4">					
+					<label>NAMA DIAGNOSA</label>
+				</div>	
+				<div  class="col-md-8" style="padding-left:15px;padding-right:15px">					
+					<input type="text" class="form-control" name="namadiagnosa" id="namadiagnosa" placeholder="Nama Diagnosa" />
+				</div>	
+			</div>	 -->
+			<!-- <div class="row">	
+				<div  class="col-md-4" id="btload">
+				&nbsp;
+				</div>	
+				<div  class="col-md-8" id="btload" style="padding-left:23px;padding-top:5px;">
+		            <button type="button" class="btn btn-primary" onclick="refreshDokter()">Cari</button>
+				</div>		        
+	        </div> -->
+	    </div>  
+      </div>
+
+      <div class="modal-body">
+			<div class="row" style="margin: 0px">
+				<div  class="col-md-12" style="padding: 0px;">
+		            <div  id="tDataList" name="tDataList" ></div>
+				</div>
+			</div>
+      </div>
+    	<button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal" id="btmodalclose" style="display: none;">click</button>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal2" style="display: none" id="modalpoli">modal 2</button>
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:50%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">CARI DATA</h4>
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+			<!-- <div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 25px;">	
+				<div  class="col-md-4">					
+					<label>NAMA DIAGNOSA</label>
+				</div>	
+				<div  class="col-md-8" style="padding-left:15px;padding-right:15px">					
+					<input type="text" class="form-control" name="namadiagnosa" id="namadiagnosa" placeholder="Nama Diagnosa" />
+				</div>	
+			</div>	 -->
+			<!-- <div class="row">	
+				<div  class="col-md-4" id="btload">
+				&nbsp;
+				</div>	
+				<div  class="col-md-8" id="btload" style="padding-left:23px;padding-top:5px;">
+		            <button type="button" class="btn btn-primary" onclick="refreshDokter()">Cari</button>
+				</div>		        
+	        </div> -->
+	    </div>  
+      </div>
+
+      <div class="modal-body">
+			<div class="row" style="margin: 0px">
+				<div  class="col-md-12" style="padding: 0px;">
+		            <div  id="tDataList2" name="tDataList2" ></div>
+				</div>
+			</div>
+      </div>
+    	<button type="button" class="btn btn-default btn-app-sm" data-dismiss="modal2" id="btmodalclose2" style="display: none;">click</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="js/master_ruangan.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<script type="text/javascript">
+
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+	$('#judul1').html(modul);
+	$('#judul2').html(modul);
+	tableMaster(modul);
+}
+
+
+
+$(document).ready(function() {
+	var modul=document.getElementById('modul').value;
+	LoadDataTablesScripts(AllTables(modul));
+	
+	$('.form-control').tooltip();
+	WinMove(); 
+
+});
+</script>
+
+

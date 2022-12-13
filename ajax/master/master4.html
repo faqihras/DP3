@@ -1,0 +1,199 @@
+
+
+<style type="text/css">
+	
+div#tData_paginate {
+  margin-bottom: -30px;
+  margin-top: -26px;
+}
+
+div#tData_filter {
+  margin-bottom: -14px;
+  margin-top: -3px;
+}
+.box-form {
+  background-color: white;
+  margin-bottom: -10px;
+}
+</style>
+
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<!-- <li><a href="#"><label>Master</label></a></li> -->
+			<li><a href="#"><label id="judul1"> </label></a></li> 
+		</ol>
+	</div>
+</div>
+
+
+<div class="row">
+	<div  class="col-md-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span><label>Cetak Per Transaksi</label></span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+
+			<div class="box-content no-padding table-responsive">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData">
+ 				</table>	
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="row">
+	<div  class="col-md-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-user"></i>
+					<span><label>Cetak Per Periode</label></span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+
+			<div class="box-content no-padding table-responsive">
+
+				<div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 10px;">	
+					<div  class="col-md-2">					
+						<label>PERIODE</label>
+					</div>	
+					<div  class="col-md-2" style="padding-left:15px;padding-right:15px">					
+						<input type="text" class="form-control" name="tgawal" id="tgawal" placeholder="Tanggal Awal" />
+					</div>	
+					<div  class="col-md-1" style="text-align: center;">					
+						<label>S/D</label>
+					</div>	
+					<div  class="col-md-2" style="padding-left:15px;padding-right:15px">					
+						<input type="text" class="form-control" name="tgahir" id="tgahir" placeholder="Tanggal Akhir" />
+					</div>	
+
+				</div>	
+
+				<div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 10px;">	
+					<div  class="col-md-2">					
+						<label>NOMOR RM</label>
+					</div>	
+					<div  class="col-md-5" id="divunit">					
+	                        <input type="hidden" class="populate placeholder" name="filterrm" id="filterrm" >
+	                        <input type="hidden" name="filterrm_hidden" id="filterrm_hidden" >
+					</div>	
+
+	 			</div>	
+
+
+				<div class="row">	
+
+					<div  class="col-md-2" id="btload">
+					&nbsp;
+					</div>	
+					<div  class="col-md-3" id="btload" style="padding-left:28px;padding-right:28px;padding-top:15px;">
+			            <button type="button" class="btn btn-primary btn-app-sm" onclick="refreshlap()"><i class="fa fa-print" aria-hidden="true" style="font-size:30px"></i></button>
+					 <button type="button" class="btn btn-primary btn-app-sm" onclick="refreshlap2()"><i class="fa fa-file-text-o" aria-hidden="true" style="font-size:30px"></i></button>
+					</div>
+						        
+		        </div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+<script src="js/master4.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+
+<script type="text/javascript">
+
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+	$('#judul1').html(modul);
+	$('#judul2').html(modul);
+	tableMaster(modul);
+}
+
+function DemoGallery(){
+	$('.fancybox').fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+}
+
+
+$(document).ready(function() {
+	var modul=document.getElementById('modul').value;
+	LoadDataTablesScripts(AllTables(modul));
+	LoadFancyboxScript(DemoGallery);
+
+
+	$('#tgawal').datepicker({
+        format: 'dd/mm/yyyy',
+    });    
+
+	$('#tgahir').datepicker({
+        format: 'dd/mm/yyyy',
+    });    
+
+    $('#filterrm')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;  
+              var nmhidden=this.id+'_hidden';
+              $('#'+nmhidden).attr('value',txt);
+        })      
+        .select2({
+        placeholder: "Pilih Data", 
+        ajax: {
+                url: 'backend/public/api/admin/unit/rmkasir',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        page_limit: 10 // page size
+                    };
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+    });
+
+
+	
+	$('.form-control').tooltip();
+	WinMove(); 
+
+});
+</script>
+
+

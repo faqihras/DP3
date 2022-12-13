@@ -1,0 +1,95 @@
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="#">Utilitas</a></li>
+			<li><a href="#">Kalkulasi</a></li>
+		</ol>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-table"></i>
+					<span>Kalkulasi Nilai LRA dan Jurnal Otomatis</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content">
+				<button type="button" class="btn btn-primary" onclick="startMapping()">Proses</button>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="pgress">
+						<span><div id="pgresslabel">0%</div></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-table"></i>
+					<span>Kalkulasi Jurnal Per Transaksi</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content">
+				<button type="button" class="btn btn-primary" onclick="startMapping2()">Proses</button>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="pgress2">
+						<span><div id="pgresslabel2">0%</div></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+
+<script src="js/mapping.js"></script>
+
+<script>
+// Draw Knob examples on page
+function UIPage_Knob(){
+	DrawKnob($(".knob"));
+}
+$(document).ready(function() {
+	LoadKnobScripts(UIPage_Knob);
+	// Start Knob clock avery 1 sec
+	setInterval(RunClock, 1000);
+	// Make all sliders on page
+	CreateAllSliders();
+	// Add Drag-n-Drop feature to boxes
+	WinMove();
+
+
+});
+</script>

@@ -1,0 +1,395 @@
+
+
+<style type="text/css">
+    
+div#tabelData_paginate {
+  margin-bottom: -30px;
+  margin-top: -26px;
+}
+
+div#tabelData_filter {
+  margin-bottom: -14px;
+  margin-top: -3px;
+}
+.box-form {
+  background-color: white;
+  margin-bottom: -10px;
+}
+
+th { font-size: 12px; }
+td { font-size: 12px; }
+
+tr.trhide.odd {
+    display: none;
+}
+
+div#divtahun {
+    margin-left: 14px;
+}
+
+div#labelThn {
+    /*margin-top: 16px;*/
+}
+</style>
+
+<div class="row">
+    <div id="breadcrumb" class="col-md-12">
+        <ol class="breadcrumb">
+            <li><a href="#"><label>Penilaian</label></a></li>
+            <li><a href="#"><label id="judul1"> </label></a></li> 
+        </ol>
+    </div>
+</div>
+
+
+<div class="row">
+    <div  class="col-md-12">
+        <div class="box">
+        <div class="box-header">
+            <div class="box-name">
+                <i class="fa fa-user"></i>
+                <span><label>Input Daftar Penilaian Supervisi Kelas</label></label></span>
+            </div>
+            <div class="box-icons">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="expand-link">
+                    <i class="fa fa-expand"></i>
+                </a>
+                <!--<a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>-->
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="padding-top: 0px;padding-bottom:0px;">
+            <!-- <div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 5px;"> 
+                <div  class="col-md-2">                 
+                    <label>TANGGAL</label>
+                </div>  
+                <div  class="col-md-2" style="padding-left:15px;padding-right:15px">                    
+                    <input type="text" class="form-control" name="tanggal" id="tanggal" placeholder="Tanggal" />
+                </div>  
+            </div>   -->
+
+            <div class="row" id="filter" style="margin-left:5px;margin-right:5px;margin-top: 5px;">    
+                <div  class="col-md-2">                 
+                    <label>UNIT</label>
+                </div>  
+                <div  class="col-md-5" id="divbarang">                  
+                        <input type="hidden" class="populate placeholder" name="filterbarang" id="filterbarang" >
+                        <input type="hidden" name="filterbarang_hidden" id="filterbarang_hidden" >
+                </div>  
+
+            </div>  
+
+            <div class="row">   
+
+                <div  class="col-md-2" id="btload">
+                &nbsp;
+                </div>  
+                <div  class="col-md-3" id="btload" style="padding-left:28px;padding-right:28px;padding-top:15px;">
+                    <button type="button" class="btn btn-primary btn-app-sm" onclick="refreshlap()"><i class="fa fa-refresh" aria-hidden="true" style="font-size:30px"></i></button>
+                    <button type="button" class="btn btn-primary btn-app-sm" onclick="tableToExcel('tabelData', 'laporan', 'laporan.xls')"><i class="fa fa-print    " aria-hidden="true" style="font-size:30px"></i></button>
+                    <input type="hidden" name="linkpdf" id="linkpdf">
+                </div>              
+            </div>
+        </div>    
+        </div>         
+    </div>
+</div>  
+<div class="row" >
+    <div  class="col-md-12">
+        <div class="box">
+                <div  id="tData" name="tData" >
+                </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="width:75%">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">DETAIL DATA DAFTAR PENILAIAN SUPERVISI KELAS</h4>
+          </div>
+
+          <input type="hidden" id="dpskId">
+
+          <div class="modal-body">
+                <div class="container">
+                    <ul class="nav nav-pills">
+                        <li class="active" id="linkPribadi"><a href="#" onclick="detail_data(1)">Data DPSK</a></li>
+                         <!--    <li id="linkTempat"><a href="#" onclick="detail_data(2)">Data Tempat Tinggal</a></li> -->
+                        
+                    </ul>
+                </div>
+                <div class="row" id="modal">
+                    <div class="box">
+                        <!-- <div class="row" id="tabel_piagam">
+                            <div class="col-md-12">
+                                <div class="box-content no-padding table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData2">
+                                    </table>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="tabel_dokumen">
+                            <div class="col-md-12">
+                                <div class="box-content no-padding table-responsive">
+                                    <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData3">
+                                    </table>    
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="box-form" id="isi_modal">
+                            <div id="forminput" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <!-- <div id="forminput2" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="forminput3" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="forminput4" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="forminput5" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="forminput6" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;            
+                            <div id="forminput7" style="margin-bottom:10px;background-color:#FFFFFF"></div><br>&nbsp;             -->
+                            <div id="formfilter"></div>
+                        </div>  
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="row" >
+                    <div class="box-content no-padding table-responsive">
+                        <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="tData2">
+                        </table>    
+                    </div>
+                </div> -->
+
+               
+
+                 <br>
+              =============NOTE=============
+              <br>
+                    <li>C1 : Perencanaan Pengelolaan KBM</li>
+                    <li>C2 : Perencanaan Pengelolaan Kelas</li>
+                    <li>C3 : Perencanaan Penggunaan Alat dan Media</li>
+                    <li>C4 : Penulisan Soal Ulangan Harian</li>
+                    <li>C5 : Memulai Pelajaran</li>
+                    <li>C6 : Mengelela Kegiatan Inti</li>
+                    <li>C7 : Mengorganisasi Waktu,Siswa Dan Fasilitas Belajar</li>
+                    <li>C8 : Penilaian Proses Dan Hasil Belajar</li>
+                    <li>C9 : Mengakhiri Pelajaran</li>
+                <table width="100%">
+
+                    <tr>
+
+                        <td style="text-align:right"><button id="save" type="button" class="btn btn-success btn-app-sm" onclick="save()"><i class="fa fa-save"></i></button> <button id="close" type="button" class="btn btn-default btn-app-sm" data-dismiss="modal"><i class="fa fa-power-off"></i></button></td>
+                    </tr>
+                </table>
+          </div>
+        </div>
+
+      </div>
+</div>
+
+
+
+<!-- <div class="row" id="crekap" name="crekap" style="display: none">
+    <div  class="col-md-4">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <span>Rekap Progres Pekerjaan Pokja</span>
+                </div>
+            </div>
+            <div  id="tDataRekap" name="tDataRekap" >
+            </div>
+
+        </div>
+    </div>
+
+    <div  class="col-md-4">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <span>Progres Pokja ULP</span>
+                </div>
+            </div>
+                <div id="progresStatus" style="min-height: 250px;"></div>
+        </div>
+    </div>
+
+    <div  class="col-md-4">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <span>Distribusi Pokja ULP</span>
+                </div>
+            </div>
+                <div id="distribusiPokja" style="min-height: 250px;"></div>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+<a id="dlink" style="display:none;"></a>
+
+
+<script src="js/dpsk.js"></script>
+<script src="plugins/select2/select2.min.js"></script>
+<script src="plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+// Run Datables plugin and create 3 variants of settings
+function AllTables(modul){
+    $('#judul1').html(modul);
+    $('#judul2').html(modul);
+}
+
+
+function refreshlap(){
+    $("#tData").html('');
+    loadLaporan();
+}
+
+function refreshlappoli(){
+    $("#tData").html('');
+    loadLaporan2();
+}
+
+function DrawAllMorrisCharts(){
+    // rekapProgresPokja();
+    // highchartPie();
+    // MorrisChart1();
+}
+
+$(document).ready(function() {
+    var modul=document.getElementById('modul').value;
+
+    LoadDataTablesScripts(AllTables(modul));    
+    // loadUnit();
+
+    $('#tanggal').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose:true
+    });
+
+    $('#tgawal').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose:true
+    });    
+
+    $('#tgahir').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose:true
+    });    
+
+    $('#tgawal2').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose:true
+    });    
+
+    $('#tgahir2').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose:true
+    });    
+
+   //var listItems ='';
+    $('#filterbarang')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;  
+              var nmhidden=this.id+'_hidden';
+              //console.log(nmhidden);                              
+              $('#'+nmhidden).attr('value',txt);
+        })      
+        .select2({
+        placeholder: "Pilih Data", 
+        ajax: {
+                url: 'backend/public/api/admin/master/unitforcombo',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        page_limit: 10 // page size
+                    };
+                     /*var listItems = '<option selected="selected" value="0">- Select -</option>';
+ 
+                  for (var i = 0; i <=datacombo.length; i++) {
+                         listItems += "<option value='" + datacombo[i].id + "'>" + datacombo[i].nama + "</option>";
+                     }
+             
+                     $("#filterbarang").html(listItems);*/
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+    });
+    //var listItems ='';
+    $('#filterpoli')
+        .on("change", function(e) {
+              var id=e.added.id;
+              var txt=e.added.nama;  
+              var nmhidden=this.id+'_hidden';
+              //console.log(nmhidden);                              
+              $('#'+nmhidden).attr('value',txt);
+        })      
+        .select2({
+        placeholder: "Pilih Data", 
+        ajax: {
+                url: 'backend/public/api/admin/master/ruangrajal',
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term, page) {
+                    return {
+                        term: term, //search term
+                        page_limit: 10 // page size
+                    };
+                     /*var listItems = '<option selected="selected" value="0">- Select -</option>';
+ 
+                  for (var i = 0; i <=datacombo.length; i++) {
+                         listItems += "<option value='" + datacombo[i].id + "'>" + datacombo[i].nama + "</option>";
+                     }
+             
+                     $("#filterbarang").html(listItems);*/
+                },
+                results: function (data, page) {
+                    return { results: data };
+                },
+            }
+});
+
+    $('.form-control').tooltip();
+    WinMove(); 
+
+});
+
+
+
+
+var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").click();
+
+        }
+    })();    
+
+</script>
+
+

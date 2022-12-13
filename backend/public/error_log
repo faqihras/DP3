@@ -1,0 +1,5 @@
+[31-Oct-2017 11:55:25 Asia/Jakarta] PHP Fatal error:  Class 'Admin\SuratKeluar\RegistrasiSK' not found in /home/optimain/public_html/e-note-smg/backend/app/controllers/Admin/Suratkeluar/RegistrasiskController.php on line 14
+[31-Oct-2017 14:02:27 Asia/Jakarta] PHP Fatal error:  Class 'Admin\SuratMasuk\DisposisiSM' not found in /home/optimain/public_html/e-note-smg/backend/app/controllers/Admin/Suratmasuk/DisposisismController.php on line 14
+[31-Oct-2017 14:03:52 Asia/Jakarta] PHP Fatal error:  Class 'Admin\SuratMasuk\DisposisiSM' not found in /home/optimain/public_html/e-note-smg/backend/app/controllers/Admin/Suratmasuk/DisposisismController.php on line 14
+[01-Nov-2017 14:40:17 Asia/Jakarta] PHP Fatal error:  Class 'Pdfbarcode' not found in /home/optimain/public_html/mss/backend/app/controllers/Admin/Report/PendaftaranController.php on line 18
+[01-Nov-2017 14:40:34 Asia/Jakarta] PHP Fatal error:  Class 'Pdfbarcode' not found in /home/optimain/public_html/mss/backend/app/controllers/Admin/Report/PendaftaranController.php on line 18
